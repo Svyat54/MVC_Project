@@ -43,8 +43,6 @@ public class Client {
     public String toString() {
         return "{" +
                 "id=" + id +
-                ", nameClient='" + nameClient + '\'' +
-                ", orders=" + orders +
-                '}';
+                ", nameClient='" + nameClient + '}';
     }
 }
