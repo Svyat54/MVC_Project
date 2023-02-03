@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class DbClientDAOTest {
     @Autowired
@@ -18,5 +18,26 @@ class DbClientDAOTest {
         List<Client> clients = dbClientDAO.findAll();
         for(Client client : clients)
             System.out.println(client);
+    }
+
+    @Test
+    void findById() {
+        System.out.println(dbClientDAO.findById(1));
+    }
+
+    @Test
+    void save() {
+        dbClientDAO.save(new Client("John"));
+    }
+
+    @Test
+    void update() {
+        Client client = new Client(1,"Olga");
+        System.out.println(dbClientDAO.update(client));
+    }
+
+    @Test
+    void delete() {
+        System.out.println(dbClientDAO.delete(3));
     }
 }

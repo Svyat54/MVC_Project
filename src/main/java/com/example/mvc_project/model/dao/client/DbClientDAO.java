@@ -20,7 +20,7 @@ public class DbClientDAO implements IClientDAO{
 
     @Override
     public Optional<Client> findById(Integer id) {
-        return Optional.empty();
+        return clientRepository.findById(id);
     }
 
     @Override
@@ -30,11 +30,14 @@ public class DbClientDAO implements IClientDAO{
 
     @Override
     public Client update(Client client) {
+        if(clientRepository.findById(client.getId()).isPresent())
+            return clientRepository.save(client);
         return null;
     }
 
     @Override
-    public Client delete(Integer id) {
-        return null;
+    public String delete(Integer id) {
+        clientRepository.deleteById(id);
+        return "delete id: " + id;
     }
 }
