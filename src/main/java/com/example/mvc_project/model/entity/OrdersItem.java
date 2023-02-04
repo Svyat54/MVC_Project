@@ -2,6 +2,7 @@ package com.example.mvc_project.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
@@ -11,7 +12,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "ordersItem_t")
 public class OrdersItem {
@@ -29,8 +30,6 @@ public class OrdersItem {
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-
-    public OrdersItem() {}
 
     public OrdersItem(Integer id, Integer quantity, Item item, Order order) {
         this.id = id;
