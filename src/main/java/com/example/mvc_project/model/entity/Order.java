@@ -2,11 +2,16 @@ package com.example.mvc_project.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "order_t")
 public class Order {
@@ -23,9 +28,8 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     private Set<OrdersItem> ordersItems;
-
-    public Order() {}
 
     public Order(Integer id, String description, Client client) {
         this.id = id;
@@ -38,12 +42,26 @@ public class Order {
         this.client = client;
     }
 
+    public Order(Integer id, Client client) {
+        this.id = id;
+        this.client = client;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", client=" + client +
-                '}';
+        return "{id= " + id + ", description= " + description + ", client= " + client + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Order order = (Order) o;
+        return id != null && Objects.equals(id, order.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
