@@ -45,9 +45,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "{" +
-                "id=" + id +
-                ", nameClient='" + nameClient + '}';
+//        if(orders == null)
+            return "{id=c" + id + ", nameClient= " + nameClient + '}';
+//        return "{id= " + id + ", nameClient= " + nameClient + ", orders= " + orders + '}';
     }
 
     @Override

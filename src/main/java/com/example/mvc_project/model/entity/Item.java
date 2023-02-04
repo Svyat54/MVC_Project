@@ -3,6 +3,7 @@ package com.example.mvc_project.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "item_t")
 public class Item {
@@ -29,12 +30,6 @@ public class Item {
     @JsonIgnore
     @ToString.Exclude
     private Set<OrdersItem> ordersItem;
-
-    public Item() {
-        id = -1;
-        itemName = "undefined";
-        itemArticle = -1L;
-    }
 
     public Item(Integer id, String itemName, Long itemArticle, Set<OrdersItem> ordersItems) {
         this.id = id;
@@ -56,11 +51,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", itemName='" + itemName + '\'' +
-                ", itemArticle=" + itemArticle +
-                '}';
+//        if(ordersItem == null)
+            return "{id= " + id + ", itemName= " + itemName + ", itemArticle= " + itemArticle + '}';
+//        return "{id= " + id + ", itemName= " + itemName + ", itemArticle= " + itemArticle +
+//                ", ordersItem= " + ordersItem + '}';
     }
 
     public String getItemName() {

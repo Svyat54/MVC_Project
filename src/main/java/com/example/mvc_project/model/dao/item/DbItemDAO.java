@@ -28,6 +28,8 @@ public class DbItemDAO implements IItemDAO{
 
     @Override
     public Item update(Item item) {
+        if(itemRepository.findById(item.getId()).isPresent())
+            return itemRepository.save(item);
         return null;
     }
 
