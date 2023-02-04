@@ -28,6 +28,8 @@ public class DbOrdersItemDAO implements IOrdersItemDAO{
 
     @Override
     public OrdersItem update(OrdersItem ordersItem) {
+        if(ordersItemRepository.findById(ordersItem.getId()).isPresent())
+            return ordersItemRepository.save(ordersItem);
         return null;
     }
 

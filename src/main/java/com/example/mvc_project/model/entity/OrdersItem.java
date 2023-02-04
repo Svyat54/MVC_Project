@@ -47,12 +47,7 @@ public class OrdersItem {
 
     @Override
     public String toString() {
-        return "{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                ", item=" + item +
-                ", order=" + order +
-                '}';
+        return "{id= " + id + ", quantity= " + quantity + ", item= " + item + ", order= " + order + '}';
     }
 
     @Override
