@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+  <h1 class="text-center">Clients List</h1>
+  <div class="container-fluid">
+  <table class="table table-bordered table-striped">
+      <tr>
+          <thead>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+          </thead>
+      </tr>
+      <tbody class="table-group-divider">
+<!--      заполняем таблицу пробегая for-each по клиентам-->
+      <th:block th:each="client:${all}">
+          <tr>
+              <th scope="row">[[${client.id}]]</th>
+              <th scope="row" >[[${client.nameClient}]]</th>
+          </tr>
+      </th:block>
+      </tbody>
+  </table>
+      <div>
+          <a th:href="@{/client/add}" class="btn btn-success">Add New Client</a>
+      </div>
+      <a th:href="@{/}">Go Home</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <h1 class="text-center">Clients Form</h1>
+    <form method="post" th:action="@{/client/add}" th:object="${client}">
+        <label for="client-name" >Client Name:</label>
+<!--        Привязка к вводу имени-->
+        <input id="client-name" th:type="text" th:field="*{nameClient}" required minlength="1" maxlength="255"/>
+        <button class="btn btn-success">Add</button>
+    </form>
+</body>
+</html>
