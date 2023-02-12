@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit OrdersItem</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Edit OrdersItem</h1>
+    <form method="post" th:action="@{/ordersItem/update}" th:object="${ordersItem}">
+        <input th:field=" *{id}" hidden/>
+        <label for="ordersItem-quant" >Quantity: </label>
+        <input id="ordersItem-quant" th:type="number" th:field="*{quantity}" required min="1" max="255"/>
+
+        <label for="ordersItem-item">Item: </label>
+        <select id="ordersItem-item" th:field="*{item}">
+            <th:block th:each="item: ${items}">
+                <option th:value="${item.id}">[[${item.itemName}]]</option>
+            </th:block>
+        </select>
+
+        <label for="ordersItem-order">Order description: </label>
+        <select id="ordersItem-order" th:field="*{order}">
+            <th:block th:each="order: ${orders}">
+                <option th:value="${order.id}">[[${order.description}]]</option>
+            </th:block>
+        </select>
+
+        <!--        <label for="ordersItem-orderClient">Order client: </label>-->
+        <!--        <select id="ordersItem-orderClient" th:field="*{order}">-->
+        <!--            <th:block th:each="order: ${orders}">-->
+        <!--                <option th:value="${order.id}">[[${order.client.nameClient}]]</option>-->
+        <!--            </th:block>-->
+        <!--        </select>-->
+
+        <button class="btn btn-success">Add</button>
+        <a th:href="@{/ordersItem/all}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

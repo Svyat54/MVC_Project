@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<h1 class="text-center">Orders List</h1>
+<div th:if="${goodMsg != null}" class="alert alert-success text-center">
+    [[${goodMsg}]]
+</div>
+<div class="container-fluid">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <thead>
+            <th scope="col">id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Item</th>
+            <th scope="col">Order</th>
+            <th scope="col">Order clients</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Detail</th>
+            </thead>
+        </tr>
+        <tbody class="table-group-divider">
+        <!--      заполняем таблицу пробегая for-each по клиентам-->
+        <th:block th:each="ordersItems:${ordersItem}">
+            <tr>
+                <th scope="row">[[${ordersItems.id}]]</th>
+                <th scope="row" >[[${ordersItems.quantity}]]</th>
+                <th scope="row" >[[${ordersItems.item.itemName}]]</th>
+                <th scope="row" >[[${ordersItems.order.description}]]</th>
+                <th scope="row" >[[${ordersItems.order.client.nameClient}]]</th>
+                <th scope="row" ><a th:href="@{'/ordersItem/delete/' + ${ordersItems.id}}" class="btn btn-danger">Delete</a></th>
+                <th scope="row" ><a th:href="@{'/ordersItem/update/' + ${ordersItems.id}}" class="btn btn-primary">Update</a></th>
+                <th scope="row" ><a th:href="@{'/ordersItem/detail/' + ${ordersItems.id}}" class="btn btn-warning">Detail</a></th>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a th:href="@{/ordersItem/add}" class="btn btn-success" >Add New Order</a>
+        <a th:href="@{/}" class="btn">Go Home</a>
+    </div>
+</div>
+</body>
+</html>

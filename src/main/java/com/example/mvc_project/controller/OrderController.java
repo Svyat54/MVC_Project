@@ -57,7 +57,6 @@ public class OrderController {
         Optional<Order> order = iOrderDAO.findById(id);
         List<Client> clients = iClientDAO.findAll();
         model.addAttribute("order", order);
-//        model.addAttribute("clients", iOrderDAO.findById(id).get().getClient().getNameClient());
         model.addAttribute("clients", clients);
         return "order/order-update";
     }
