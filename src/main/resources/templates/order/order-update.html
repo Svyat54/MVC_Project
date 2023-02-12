@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Order</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<h1 class="text-center">Edit Order</h1>
+<form method="post" th:action="@{/order/update}" th:object="${order}">
+  <input th:field=" *{id}" hidden/>
+  <label for="order-desc" >Order desc:</label>
+  <input id="order-desc" th:type="text" th:field="*{description}" required minlength="1" maxlength="255"/>
+
+  <label for="order-client">Client: </label>
+  <select id="order-client" th:field="*{client}">
+    <th:block th:each="client: ${clients}">
+      <option th:value="${client.id}">[[${client.nameClient}]]</option>
+    </th:block>
+  </select>
+
+  <button class="btn btn-success">Add</button>
+  <a th:href="@{/order/all}" class="btn btn-danger">Cancel</a>
+</form>
+</body>
+</html>

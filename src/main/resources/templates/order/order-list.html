@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders List</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<h1 class="text-center">Orders List</h1>
+<div th:if="${goodMsg != null}" class="alert alert-success text-center">
+  [[${goodMsg}]]
+</div>
+<div class="container-fluid">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <thead>
+      <th scope="col">id</th>
+      <th scope="col">Description</th>
+      <th scope="col">Client</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Detail</th>
+      </thead>
+    </tr>
+    <tbody class="table-group-divider">
+    <!--      заполняем таблицу пробегая for-each по клиентам-->
+    <th:block th:each="order:${orders}">
+      <tr>
+        <th scope="row">[[${order.id}]]</th>
+        <th scope="row" >[[${order.description}]]</th>
+        <th scope="row" >[[${order.client.nameClient}]]</th>
+<!--&lt;!&ndash;        ссылка на имя клиентов&ndash;&gt;-->
+<!--        <th scope="row" ><a th:href="@{'/client/detail/' + ${order.client.id}}">[[${order.client.nameClient}]]</a></th>-->
+
+        <th scope="row" ><a th:href="@{'/order/delete/' + ${order.id}}" class="btn btn-danger">Delete</a></th>
+        <th scope="row" ><a th:href="@{'/order/update/' + ${order.id}}" class="btn btn-primary">Update</a></th>
+        <th scope="row" ><a th:href="@{'/order/detail/' + ${order.id}}" class="btn btn-warning">Detail</a></th>
+      </tr>
+    </th:block>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <a th:href="@{/order/add}" class="btn btn-success" >Add New Order</a>
+    <a th:href="@{/}" class="btn">Go Home</a>
+  </div>
+</div>
+</body>
+</html>

@@ -6,13 +6,19 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
+<div class="container-fluid text-center">
   <h1 class="text-center">Clients List</h1>
-  <div class="container-fluid">
+  <div th:if="${goodMsg != null}" class="alert alert-success">
+    [[${goodMsg}]]
+  </div>
   <table class="table table-bordered table-striped">
       <tr>
           <thead>
             <th scope="col">id</th>
             <th scope="col">Name</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Detail</th>
           </thead>
       </tr>
       <tbody class="table-group-divider">
@@ -21,14 +27,17 @@
           <tr>
               <th scope="row">[[${client.id}]]</th>
               <th scope="row" >[[${client.nameClient}]]</th>
+              <th scope="row" ><a th:href="@{'/client/delete/' + ${client.id}}" class="btn btn-danger">Delete</a></th>
+              <th scope="row" ><a th:href="@{'/client/update/' + ${client.id}}" class="btn btn-primary">Update</a></th>
+              <th scope="row" ><a th:href="@{'/client/detail/' + ${client.id}}" class="btn btn-warning">Detail</a></th>
           </tr>
       </th:block>
       </tbody>
   </table>
       <div>
-          <a th:href="@{/client/add}" class="btn btn-success">Add New Client</a>
+          <a th:href="@{/client/add}" class="btn btn-success" >Add New Client</a>
+          <a th:href="@{/}" class="btn">Go Home</a>
       </div>
-      <a th:href="@{/}">Go Home</a>
-  </div>
+</div>
 </body>
 </html>

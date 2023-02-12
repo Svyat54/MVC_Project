@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <h1>Orders Detaile</h1>
+  <h2>[[${order}]]</h2>
+  <a th:href="@{/order/all}" class="btn btn-danger">Cancel</a>
+</div>
+<!--<a th:href="@{/order/all}" class="btn btn-danger">Cancel</a>-->
+</body>
+</html>

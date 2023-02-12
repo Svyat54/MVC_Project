@@ -37,7 +37,8 @@ public class DbClientDAO implements IClientDAO{
 
     @Override
     public String delete(Integer id) {
-        clientRepository.deleteById(id);
+        Optional<Client> deleted = clientRepository.findById(id);
+        deleted.ifPresent(client -> clientRepository.deleteById(client.getId()));
         return "delete id: " + id;
     }
 }

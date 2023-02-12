@@ -37,6 +37,10 @@ public class Order {
         this.client = client;
     }
 
+    public Order(String description) {
+        this.description = description;
+    }
+
     public Order(String description, Client client) {
         this.description = description;
         this.client = client;
