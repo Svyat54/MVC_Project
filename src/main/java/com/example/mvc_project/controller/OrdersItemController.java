@@ -66,7 +66,7 @@ public class OrdersItemController {
         model.addAttribute("ordersItem", ordersItem);
         model.addAttribute("items", items);
         model.addAttribute("orders", orders);
-        return "ordersItem/ordersItem-up";
+        return "ordersItem/ordersItem-update";
     }
 
     @PostMapping("/update")
